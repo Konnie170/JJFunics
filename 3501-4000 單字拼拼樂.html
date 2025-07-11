@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3501-4000 單字拼拼樂</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+
+        :root {
+            --primary-color: #f06292;
+            --primary-hover: #ec407a;
+            --text-color: #fff;
+            --text-secondary: #333;
+            --border-radius: 15px;
+            --box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            --transition-speed: 0.3s;
+            --book-spine-width: 30px;
+            --book-height: 220px;
+            --book-width: 140px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: var(--text-color);
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            position: relative;
+            min-height: 100vh;
+            transition: background 0.5s ease;
+        }
+
+        .container-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3.5em;
+            color: #ffe;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: var(--border-radius);
+            width: 100%;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            animation: glow 2s infinite alternate;
+            backdrop-filter: blur(5px);
+        }
+
+        @keyframes glow {
+            from { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3); }
+            to { text-shadow: 0 0 15px rgba(255, 255, 255, 0.7), 0 0 25px rgba(255, 255, 255, 0.5); }
+        }
+
+        .top-right-buttons {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 1em;
+            background: var(--primary-color);
+            color: var(--text-color);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all var(--transition-speed);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--box-shadow);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background: var(--primary-hover);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin: 30px auto;
+        }
+
+        .card {
+            flex: 1;
+            min-width: 320px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            backdrop-filter: blur(10px);
+            transition: transform var(--transition-speed);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .card h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--text-color);
+            font-size: 1em;
+            transition: all var(--transition-speed);
+            outline: none;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .color-button {
+            padding: 15px 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+            color: var(--text-color);
+            transition: transform var(--transition-speed);
+            text-align: center;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        #descriptionContainer {
+            font-size: 1.4em;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            color: var(--text-secondary);
+            border-radius: var(--border-radius);
+            display: inline-block;
+            margin: 30px auto;
+            min-width: 60%;
+            white-space: pre-wrap;
+            box-shadow: var(--box-shadow);
+            backdrop-filter: blur(5px);
+            line-height: 1.6;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .bookshelf-wrapper {
+            margin: 40px auto;
+            padding: 30px;
+            background: linear-gradient(to bottom, rgba(165, 132, 84, 0.7), rgba(120, 90, 50, 0.8));
+            border-radius: var(--border-radius);
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3), var(--box-shadow);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bookshelf-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(to right, rgba(120, 81, 31, 0.8), rgba(212, 175, 125, 0.8), rgba(120, 81, 31, 0.8));
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .bookshelf-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 15px;
+            background: linear-gradient(to right, rgba(120, 81, 31, 0.8), rgba(212, 175, 125, 0.8), rgba(120, 81, 31, 0.8));
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .bookshelf-wrapper h2 {
+            margin-bottom: 40px;
+            color: #fff;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            font-size: 2em;
+        }
+
+        .link-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-gap: 35px;
+            width: 100%;
+            padding: 10px;
+        }
+
+        /* 新的書籍按鈕設計 */
+        .generated-link-button {
+            position: relative;
+            height: var(--book-height);
+            width: var(--book-width);
+            display: block;
+            margin: 0 auto;
+            text-decoration: none;
+            cursor: move;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .generated-link-button:hover {
+            transform: translateY(-15px) rotateX(5deg) rotateY(-10deg);
+        }
+
+        .book {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            transform-style: preserve-3d;
+            transform: rotateY(-30deg);
+            transition: transform 0.5s;
+        }
+
+        .book-front,
+        .book-back,
+        .book-top,
+        .book-bottom,
+        .book-right,
+        .book-left {
+            position: absolute;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .book-front {
+            height: var(--book-height);
+            width: var(--book-width);
+            transform: translateZ(var(--book-spine-width));
+            border-radius: 2px 10px 10px 2px;
+            background: linear-gradient(45deg, #f6f6f6, #e6e6e6);
+            background-size: 100% 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 15px;
+            overflow: hidden;
+            border-left: 1px solid #ddd;
+        }
+
+        .book-title {
+            font-family: 'Noto Serif TC', serif;
+            font-weight: 700;
+            font-size: 1.2em;
+            color: #333;
+            text-align: center;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 0 #fff;
+            word-wrap: break-word;
+            position: relative;
+            z-index: 2;
+        }
+
+        .book-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: 
+                radial-gradient(circle, transparent 20%, rgba(0,0,0,0.1) 20%, transparent 30%) 0 0,
+                radial-gradient(circle, transparent 20%, rgba(0,0,0,0.1) 20%, transparent 30%) 25px 25px;
+            background-size: 50px 50px;
+            z-index: 1;
+        }
+
+        .book-decor {
+            position: absolute;
+            width: 90%;
+            height: 6px;
+            background: rgba(51, 51, 51, 0.1);
+            bottom: 30px;
+            left: 5%;
+            border-radius: 3px;
+            z-index: 2;
+        }
+
+        .book-decor::before {
+            content: '';
+            position: absolute;
+            width: 90%;
+            height: 6px;
+            background: rgba(51, 51, 51, 0.1);
+            top: -15px;
+            left: 5%;
+            border-radius: 3px;
+        }
+
+        .book-decor::after {
+            content: '';
+            position: absolute;
+            width: 90%;
+            height: 6px;
+            background: rgba(51, 51, 51, 0.1);
+            top: -30px;
+            left: 5%;
+            border-radius: 3px;
+        }
+
+        .book-back {
+            height: var(--book-height);
+            width: var(--book-width);
+            transform: translateZ(calc(-1 * var(--book-spine-width)));
+            border-radius: 10px 2px 2px 10px;
+            background: #e6e6e6;
+            border-right: 1px solid #ddd;
+        }
+        
+        .book-top {
+            height: var(--book-spine-width);
+            width: var(--book-width);
+            transform: rotateX(90deg) translateZ(calc(var(--book-spine-width) / 2));
+            transform-origin: bottom;
+            background: #fff;
+            border-radius: 3px 3px 0 0;
+        }
+        
+        .book-bottom {
+            height: var(--book-spine-width);
+            width: var(--book-width);
+            transform: rotateX(-90deg) translateZ(calc(var(--book-height) - var(--book-spine-width) / 2));
+            transform-origin: top;
+            background: #e0e0e0;
+            border-radius: 0 0 3px 3px;
+        }
+        
+        .book-right {
+            height: var(--book-height);
+            width: var(--book-spine-width);
+            transform: rotateY(90deg) translateZ(calc(var(--book-width) - var(--book-spine-width) / 2));
+            transform-origin: left;
+            background: #e0e0e0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .book-left {
+            height: var(--book-height);
+            width: var(--book-spine-width);
+            transform: rotateY(-90deg) translateZ(calc(var(--book-spine-width) / 2));
+            transform-origin: right;
+            background: linear-gradient(to right, #c19a6b, #deb887, #c19a6b);
+            border-radius: 5px 0 0 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+        }
+        
+        .book-spine-text {
+            color: #fff;
+            font-family: 'Noto Serif TC', serif;
+            font-size: 0.9em;
+            font-weight: bold;
+            writing-mode: vertical-lr;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+            text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 80%;
+        }
+        .book-shine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.5) 38%, rgba(255,255,255,0) 48%);
+            background-size: 200% 100%;
+            animation: shine 5s infinite;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .book-emboss {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, rgba(255,215,0,0.4) 30%, transparent 70%);
+            z-index: 3;
+            opacity: 0.7;
+            border-radius: 50%;
+        }
+
+        .dragover .book {
+            transform: rotateY(0deg);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 1em;
+            color: var(--text-color);
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(5px);
+        }
+
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all var(--transition-speed);
+            padding: 3px 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .footer a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #batchInputContainer {
+            display: none;
+            width: 90%;
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: var(--border-radius);
+            color: var(--text-secondary);
+            box-shadow: var(--box-shadow);
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #batchInputContainer h3 {
+            margin: 0 0 15px 0;
+            color: var(--text-secondary);
+            font-size: 1.5em;
+        }
+
+        #batchInputContainer p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        #batchInputContainer .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            color: #999;
+            cursor: pointer;
+            transition: color var(--transition-speed);
+        }
+
+        #batchInputContainer .close-btn:hover {
+            color: #333;
+        }
+
+        .tooltip {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            z-index: 1000;
+            animation: fadeInOut 5s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2.5em;
+                padding: 10px 0;
+            }
+            
+            .top-right-buttons {
+                position: relative;
+                top: 0;
+                right: 0;
+                display: flex;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+            
+            .card {
+                min-width: 100%;
+            }
+            
+            .color-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+            
+            #descriptionContainer {
+                font-size: 1.2em;
+                width: 90%;
+            }
+
+            .link-container {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-gap: 20px;
+            }
+        }
+    
+</style>
+</head>
+<body style="background: linear-gradient(to right, #43c6ac, #f8ffae);">
+<div class="container-wrapper">
+    <header>
+        <h1>3501-4000 單字拼拼樂</h1>
+    </header>
+    
+    <div id="descriptionContainer"></div>
+    
+    <div class="bookshelf-wrapper">
+        <h2><i class="fas fa-book"></i> 我的連結書架</h2>
+        <div id="linkContainer" class="link-container">
+            <a class="generated-link-button" href="https://wordwall.net/resource/94492334/3501-3525" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(263, 68%, 86%), hsl(321, 79%, 48%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492334/3501-3525</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(263, 68%, 86%), hsl(321, 79%, 48%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(119, 66%, 58%), lighten(hsl(119, 66%, 58%), 15%), hsl(119, 66%, 58%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492334/3501-3525</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492470/3526-3550" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(332, 62%, 77%), hsl(234, 78%, 58%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492470/3526-3550</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(332, 62%, 77%), hsl(234, 78%, 58%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(23, 60%, 41%), lighten(hsl(23, 60%, 41%), 15%), hsl(23, 60%, 41%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492470/3526-3550</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492485/3551-3575" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(7, 73%, 76%), hsl(44, 76%, 42%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492485/3551-3575</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(7, 73%, 76%), hsl(44, 76%, 42%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(324, 75%, 51%), lighten(hsl(324, 75%, 51%), 15%), hsl(324, 75%, 51%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492485/3551-3575</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492505/3576-3600" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(304, 70%, 79%), hsl(325, 64%, 56%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492505/3576-3600</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(304, 70%, 79%), hsl(325, 64%, 56%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(217, 72%, 46%), lighten(hsl(217, 72%, 46%), 15%), hsl(217, 72%, 46%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492505/3576-3600</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492536/3601-3625" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(77, 70%, 88%), hsl(344, 76%, 65%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492536/3601-3625</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(77, 70%, 88%), hsl(344, 76%, 65%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(203, 79%, 66%), lighten(hsl(203, 79%, 66%), 15%), hsl(203, 79%, 66%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492536/3601-3625</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492557/3626-3650" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(350, 74%, 85%), hsl(121, 77%, 44%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492557/3626-3650</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(350, 74%, 85%), hsl(121, 77%, 44%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(158, 70%, 44%), lighten(hsl(158, 70%, 44%), 15%), hsl(158, 70%, 44%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492557/3626-3650</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492578/3651-3675" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(188, 75%, 86%), hsl(293, 64%, 63%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492578/3651-3675</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(188, 75%, 86%), hsl(293, 64%, 63%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(7, 61%, 55%), lighten(hsl(7, 61%, 55%), 15%), hsl(7, 61%, 55%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492578/3651-3675</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492601/3676-3700" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(133, 76%, 79%), hsl(225, 72%, 60%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492601/3676-3700</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(133, 76%, 79%), hsl(225, 72%, 60%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(307, 73%, 46%), lighten(hsl(307, 73%, 46%), 15%), hsl(307, 73%, 46%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492601/3676-3700</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492619/3701-3725" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(36, 73%, 77%), hsl(359, 62%, 67%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492619/3701-3725</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(36, 73%, 77%), hsl(359, 62%, 67%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(203, 72%, 56%), lighten(hsl(203, 72%, 56%), 15%), hsl(203, 72%, 56%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492619/3701-3725</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492629/3726-3750" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(160, 65%, 81%), hsl(50, 62%, 53%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492629/3726-3750</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(160, 65%, 81%), hsl(50, 62%, 53%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(192, 65%, 57%), lighten(hsl(192, 65%, 57%), 15%), hsl(192, 65%, 57%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492629/3726-3750</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492659/3751-3775" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(222, 75%, 76%), hsl(292, 68%, 67%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492659/3751-3775</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(222, 75%, 76%), hsl(292, 68%, 67%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(204, 65%, 61%), lighten(hsl(204, 65%, 61%), 15%), hsl(204, 65%, 61%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492659/3751-3775</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492672/3776-3800" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(76, 60%, 87%), hsl(36, 63%, 69%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492672/3776-3800</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(76, 60%, 87%), hsl(36, 63%, 69%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(35, 71%, 56%), lighten(hsl(35, 71%, 56%), 15%), hsl(35, 71%, 56%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492672/3776-3800</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492703/3801-3825" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(331, 77%, 86%), hsl(113, 71%, 51%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492703/3801-3825</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(331, 77%, 86%), hsl(113, 71%, 51%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(350, 60%, 48%), lighten(hsl(350, 60%, 48%), 15%), hsl(350, 60%, 48%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492703/3801-3825</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492725/3826-3850" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(193, 79%, 83%), hsl(186, 66%, 51%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492725/3826-3850</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(193, 79%, 83%), hsl(186, 66%, 51%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(131, 79%, 43%), lighten(hsl(131, 79%, 43%), 15%), hsl(131, 79%, 43%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492725/3826-3850</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492736/3851-3875" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(63, 77%, 87%), hsl(180, 64%, 44%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492736/3851-3875</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(63, 77%, 87%), hsl(180, 64%, 44%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(278, 70%, 68%), lighten(hsl(278, 70%, 68%), 15%), hsl(278, 70%, 68%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492736/3851-3875</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492789/3876-3900" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(292, 62%, 80%), hsl(273, 65%, 48%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492789/3876-3900</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(292, 62%, 80%), hsl(273, 65%, 48%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(54, 74%, 42%), lighten(hsl(54, 74%, 42%), 15%), hsl(54, 74%, 42%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492789/3876-3900</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492805/3901-3925" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(94, 63%, 83%), hsl(29, 76%, 52%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492805/3901-3925</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(94, 63%, 83%), hsl(29, 76%, 52%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(81, 64%, 51%), lighten(hsl(81, 64%, 51%), 15%), hsl(81, 64%, 51%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492805/3901-3925</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492817/3926-3950" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(257, 60%, 80%), hsl(141, 71%, 51%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492817/3926-3950</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(257, 60%, 80%), hsl(141, 71%, 51%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(193, 68%, 47%), lighten(hsl(193, 68%, 47%), 15%), hsl(193, 68%, 47%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492817/3926-3950</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492835/3951-3975" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(72, 78%, 84%), hsl(209, 64%, 54%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492835/3951-3975</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(72, 78%, 84%), hsl(209, 64%, 54%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(115, 74%, 63%), lighten(hsl(115, 74%, 63%), 15%), hsl(115, 74%, 63%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492835/3951-3975</div>
+                    </div>
+                </div>
+            </a><a class="generated-link-button" href="https://wordwall.net/resource/94492852/3975-4000" target="_blank" draggable="true">
+                <div class="book">
+                    <div class="book-front" style="background: linear-gradient(135deg, hsl(264, 66%, 84%), hsl(346, 66%, 69%))">
+                        <div class="book-pattern"></div>
+                        <div class="book-title">https://wordwall.net/resource/94492852/3975-4000</div>
+                        <div class="book-decor"></div>
+                        <div class="book-emboss"></div>
+                        <div class="book-shine"></div>
+                    </div>
+                    <div class="book-back" style="background: linear-gradient(135deg, hsl(264, 66%, 84%), hsl(346, 66%, 69%))"></div>
+                    <div class="book-top"></div>
+                    <div class="book-bottom"></div>
+                    <div class="book-right"></div>
+                    <div class="book-left" style="background: linear-gradient(to right, hsl(248, 61%, 68%), lighten(hsl(248, 61%, 68%), 15%), hsl(248, 61%, 68%))">
+                        <div class="book-spine-text">https://wordwall.net/resource/94492852/3975-4000</div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Made by <a href="https://kentxchang.blogspot.tw" target="_blank">阿剛老師</a></p>
+    </div>
+</div>
+</body>
+</html>
